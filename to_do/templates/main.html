@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>To Do - Tasks</title>
+  <meta content="A multi user blogging Platform" name="description">
+  <meta content="Blog" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon-1.png' %}" rel="icon">
+  <link href="{% static 'assets/img/favicon-1.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- Notification -->
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "2b2d36b2-608e-4a45-b1ea-8069830af538",
+        notifyButton: {
+          enable: true,
+        },
+      });
+    });
+  </script>
+
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <!-- <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
+    <div class="container d-flex">
+      <div class="contact-info mr-auto">
+        <i class="icofont-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
+        <i class="icofont-phone"></i> +1 5589 55488 55
+      </div>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="skype"><i class="icofont-skype"></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+    </div id="topbar">
+  </div> id="header" class="fixed-top"  -->
+
+  <!-- ======= Header ======= -->
+  <header class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="container-fluid" >
+
+      <!-- <h1 class="logo mr-auto"><a href="index.html">Legit Bouys<span></span></a></h1> -->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="#" class="navbar-brand"><img src="{% static 'assets/img/favicon-1.png' %}" style="max-height: 100px;max-width:100px;"></a>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <!-- <li ><a href="#">Home</a></li> -->
+          {% if user.is_authenticated %}
+            <li><a href="#today">Today's Tasks</a></li>
+            <li><a href="#scheduled">Scheduled Tasks</a></li>
+            <li><a href="#incomplete">Incomplete Tasks</a></li>
+            <li><a href="#complete">completed Tasks</a></li>
+            <li><a href="#search">Search</a></li>
+            <!-- <li><a >welcome {{user}}</a></li> -->
+            <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+          {% else %}  
+            <li><a href="{% url 'accounts:register' %}"><button class="btn btn-outline-success me-2" type="button">Sign Up</button></a></li>
+            <li><a href="{% url 'accounts:login' %}"><button class="btn btn-outline-success me-2" type="button">Login</button></a></li>
+          {% endif %}
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <div class="container">
+    <div style="margin: 70px 0px ;">
+      {% block content %}
+    
+      {% endblock %}
+    </div>
+  </div>
+  
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

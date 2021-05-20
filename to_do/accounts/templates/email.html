@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sending emails to user in Python</title>
+  </head>
+  <body>
+    Hello {{user}},
+
+    <p>Please click on the button bellow verify your email </p><br>
+    <a href="{% url 'accounts:verify' user %}" class="btn btn-primary">Verify Email</a>
+
+    <p>Thanks,<br />To Do App</p>
+  </body>
+</html>
