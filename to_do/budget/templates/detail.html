@@ -1,0 +1,111 @@
+{% extends 'main.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col" style="background-color: red;color:white;">
+                <p>Project Name</p>
+                <h3>{{project.name}}</h3>
+            </div>
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col" style="background-color: blue;color:white;">
+                <p>Budget</p>
+                <h3>{{project.budget_allocated}}</h3>
+            </div>
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col" style="background-color:slateblue;color:white;">
+                <p>Remaining Amount</p>
+                <h3>{{budget_remaining}}</h3>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <a class="btn btn-primary" href="{% url 'budget:expense' project.slug %}" >Add Expense</a>
+    <!-- Modal  data-target="#second" data-toggle="modal"  -->
+    <!-- <div class="modal fade" id="second" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Expense</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'budget:expense' project.slug %}" method="post">
+                        {% csrf_token %}
+                        <label for="name">Expense Title : </label>
+                        <input type="text" name="name" id="name"><br><br>
+                        <label for="cost">Ammount : </label>
+                        <input type="number" name="cost" id="cost" min="0"><br><br>
+                        <input type="submit" value="Add" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>  -->
+    <br><br><br><br>
+    <h3>Project Description</h3>
+    <p>{{project.description}}</p>
+    <br><br><br><br>
+    <h5>Completion Date : {{project.completion}}</h5>
+    <br><br><br><br>
+    <h3>All Expences </h3>
+    <br><br>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <td>Expense Name</td>
+                <td>Amount Spent</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% if expenses %}
+                {% for exp in expenses %}
+                    <tr>
+                        <td>{{exp.name}}</td>
+                        <td>{{exp.expense}}</td>
+                        <td ><a href="{% url 'budget:update_expense' pk=exp.id %}">Update</a></td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{exp.id}}" >Delete</button></td>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal{{exp.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete Expense</h5>
+                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{% url 'budget:expense_delete' exp.id %}" method="post">
+                                            {% csrf_token %}
+                                            <h5>Are you sure you want to delete {{exp.name}}</h5>
+                                            <input type="submit" value="Delete">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <td>No Expenses registered</td>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <h5>Total Expenses = {{total_expense}} </h5>
+
+{% endblock %}

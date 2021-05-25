@@ -1,6 +1,21 @@
 {% extends 'main.html' %}
 {% load bootstrap4 %}
 
+
+{% block header %}
+    <ul>
+    <!-- <li ><a href="#">Home</a></li> -->
+        {% if user.is_authenticated %}
+            <li><a href="#today">Today's Tasks</a></li>
+            <li><a href="#scheduled">Scheduled Tasks</a></li>
+            <li><a href="#incomplete">Incomplete Tasks</a></li>
+            <li><a href="#complete">completed Tasks</a></li>
+            <li><a href="#search">Search</a></li>
+        <!-- <li><a >welcome {{user}}</a></li> -->
+        {% endif %}
+    </ul>
+{% endblock %}
+        
 {% block content %}
     <h1>Welcome {{user}}</h1>
     {% if user.is_authenticated %}

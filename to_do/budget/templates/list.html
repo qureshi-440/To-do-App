@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <button class="btn btn-large btn-primary" style="margin: auto;" data-target="#second" data-toggle="modal">New Project</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="second" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Project</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <label for="completion">Completion Date : </label>
+                        <input type="date" name="completion" id="completion"><br>
+                        <input type="submit" value="Create" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <br><br><br><br>
+    {% if all %}
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Budget</td>
+                    <td>Ammount Remaining</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project,remains in all %}
+                    <tr>
+                        <td><a href="{% url 'budget:detail' project.slug  %}">{{project.name}}</a></td>
+                        <td>{{project.budget_allocated}}</td>
+                            {% if remains < 0 %}
+                                <td style="color: red;">
+                                    <p>Over Budget</p>
+                                    {{remains}}
+                                </td>
+                            {% else %}
+                                <td>{{remains}}</td>
+                            {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

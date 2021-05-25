@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include(('tasks.urls','tasks'),namespace='tasks')),
     path("accounts/",include(('accounts.urls','accounts'),namespace='accounts')),
-
+    path("budget/",include(('budget.urls','budget'),namespace='budget')),
 ]

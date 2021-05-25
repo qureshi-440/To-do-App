@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'bootstrap4',
     'django_filters',
+    'budget',
 ]
 AUTH_USER_MODEL = 'accounts.User'
 

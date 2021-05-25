@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Add Expense" class="btn btn-primary">
+    </form>
+    <!-- <form  method="post">
+        {% csrf_token %}
+        <label for="name">Expense name : </label>
+        <input type="text" name="name" id="name"><br><br>
+        <label for="cost">Cost :</label>
+        <input type="number" name="cost" id="cost" min="0" ><br><br>
+        <input type="submit" value="Add Expense" class="btn btn-primary">
+    </form> -->
+{% endblock %}

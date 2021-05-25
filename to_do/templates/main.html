@@ -69,24 +69,20 @@
 
       <!-- <h1 class="logo mr-auto"><a href="index.html">Legit Bouys<span></span></a></h1> -->
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="#" class="navbar-brand"><img src="{% static 'assets/img/favicon-1.png' %}" style="max-height: 100px;max-width:100px;"></a>
+      <a href="{% url 'tasks:home' %}" class="navbar-brand">To Do </a>
+      <a href="{% url 'budget:list' %}" class="navbar-brand">Budgeting</a>
 
       <nav class="nav-menu d-none d-lg-block">
+        {% block header %}
+          
+        {% endblock %}
         <ul>
-          <!-- <li ><a href="#">Home</a></li> -->
           {% if user.is_authenticated %}
-            <li><a href="#today">Today's Tasks</a></li>
-            <li><a href="#scheduled">Scheduled Tasks</a></li>
-            <li><a href="#incomplete">Incomplete Tasks</a></li>
-            <li><a href="#complete">completed Tasks</a></li>
-            <li><a href="#search">Search</a></li>
-            <!-- <li><a >welcome {{user}}</a></li> -->
             <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
           {% else %}  
             <li><a href="{% url 'accounts:register' %}"><button class="btn btn-outline-success me-2" type="button">Sign Up</button></a></li>
             <li><a href="{% url 'accounts:login' %}"><button class="btn btn-outline-success me-2" type="button">Login</button></a></li>
           {% endif %}
-
         </ul>
       </nav><!-- .nav-menu -->
 
